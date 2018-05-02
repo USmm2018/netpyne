@@ -1552,6 +1552,7 @@ metadata = {
                                 "suggestions": "",
                                 "help": "Variable to represent in shape plot ('numSyns'|'weightNorm').",
                                 "hintText": "",
+                                "options": ["numSyns", "weightNorm"],
                                 "type": "str"
                             },
                             "cvals": {
