@@ -1,8 +1,6 @@
 """
 analysis.py
-
 Functions to plot and analyse results
-
 Contributors: salvadordura@gmail.com
 """
 
@@ -128,32 +126,24 @@ import numpy
 ######################################################################################################################################################
 def _smooth1d(x,window_len=11,window='hanning'):
     """smooth the data using a window with requested size.
-
     This method is based on the convolution of a scaled window with the signal.
     The signal is prepared by introducing reflected copies of the signal
     (with the window size) in both ends so that transient parts are minimized
     in the begining and end part of the output signal.
-
     input:
         x: the input signal
         window_len: the dimension of the smoothing window; should be an odd integer
         window: the type of window from 'flat', 'hanning', 'hamming', 'bartlett', 'blackman'
             flat window will produce a moving average smoothing.
-
     output:
         the smoothed signal
-
     example:
-
     t=linspace(-2,2,0.1)
     x=sin(t)+randn(len(t))*0.1
     y=smooth(x)
-
     see also:
-
     numpy.hanning, numpy.hamming, numpy.bartlett, numpy.blackman, numpy.convolve
     scipy.signal.lfilter
-
     TODO: the window parameter could be the window itself if an array instead of a string
     NOTE: length(output) != length(input), to correct this: return y[(window_len/2-1):-(window_len/2)] instead of just y.
     """
@@ -413,7 +403,6 @@ def plotRates (include =['allCells', 'eachPop'], peakBin = 5, timeRanges = None,
         - saveFig (None|True|'fileName'): File name where to save the figure (default: None)
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figs
     '''
     import sim
@@ -521,7 +510,6 @@ def plotSyncs (include =['allCells', 'eachPop'], timeRanges = None, timeRangeLab
         - saveFig (None|True|'fileName'): File name where to save the figure (default: None)
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figs
     '''
     import sim
@@ -604,7 +592,6 @@ def plotRaster (include = ['allCells'], timeRange = None, maxSpikes = 1e8, order
         - saveFig (None|True|'fileName'): File name where to save the figure (default: None)
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handle
     '''
 
@@ -828,7 +815,7 @@ def plotRaster (include = ['allCells'], timeRange = None, maxSpikes = 1e8, order
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {}
+    return fig
 
 
 ######################################################################################################################################################
@@ -854,7 +841,6 @@ def plotSpikeHist (include = ['allCells', 'eachPop'], timeRange = None, binSize 
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handle
     '''
 
@@ -1010,7 +996,7 @@ def plotSpikeHist (include = ['allCells', 'eachPop'], timeRange = None, binSize 
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {'histData': histData, 'histoT': histoT}
+    return fig, histData, histoT
 
 
 
@@ -1036,7 +1022,6 @@ def plotSpikeStats (include = ['allCells', 'eachPop'], statDataIn = {}, timeRang
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handle and statData
     '''
 
@@ -1367,7 +1352,7 @@ def plotSpikeStats (include = ['allCells', 'eachPop'], statDataIn = {}, timeRang
         # show fig 
         if showFig: _showFigure()
 
-    return fig, {'statData': statData, 'gidsData':gidsData, 'ynormsData':ynormsData}
+    return fig, statData, gidsData, ynormsData
 
 
 
@@ -1396,7 +1381,6 @@ def plotRatePSD (include = ['allCells', 'eachPop'], timeRange = None, binSize = 
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handle
     '''
 
@@ -1519,7 +1503,7 @@ def plotRatePSD (include = ['allCells', 'eachPop'], timeRange = None, binSize = 
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {'allSignal':allSignal, 'allPower':allPower, 'allFreqs':allFreqs}
+    return fig, allSignal, allPower, allFreqs
 
 
 
@@ -1547,7 +1531,6 @@ def plotTraces (include = None, timeRange = None, overlay = False, oneFigPer = '
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handles
     '''
     import sim
@@ -1705,7 +1688,7 @@ def plotTraces (include = None, timeRange = None, overlay = False, oneFigPer = '
     # show fig 
     if showFig: _showFigure()
 
-    return figs, {}
+    return figs
 
 def invertDictMapping(d):
     """ Invert mapping of dictionary (i.e. map values to list of keys) """
@@ -1744,7 +1727,6 @@ def plotShape (includePost = ['all'], includePre = ['all'], showSyns = False, sh
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handles
     '''
 
@@ -1896,7 +1878,7 @@ def plotShape (includePost = ['all'], includePre = ['all'], showSyns = False, sh
             fig.printfile(filename)
 
 
-    return fig, {}
+    return fig
 
 
 ######################################################################################################################################################
@@ -1924,7 +1906,6 @@ def plotLFP (electrodes = ['avg', 'all'], plots = ['timeSeries', 'PSD', 'spectro
         - saveFig (None|True|'fileName'): File name where to save the figure;
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handles
     
     '''
@@ -2200,7 +2181,7 @@ def plotLFP (electrodes = ['avg', 'all'], plots = ['timeSeries', 'PSD', 'spectro
             cvals.extend(trSegs)  
             
         includePost = [c.gid for c in sim.net.compartCells]
-        fig = sim.analysis.plotShape(includePost=includePost, showElectrodes=electrodes, cvals=cvals, includeAxon=includeAxon, dpi=dpi, saveFig=saveFig, showFig=showFig, figSize=figSize)[0]
+        fig = sim.analysis.plotShape(includePost=includePost, showElectrodes=electrodes, cvals=cvals, includeAxon=includeAxon, dpi=dpi, saveFig=saveFig, showFig=showFig, figSize=figSize)
         figs.append(fig)
 
 
@@ -2721,7 +2702,6 @@ def plotConn (includePre = ['all'], includePost = ['all'], feature = 'strength',
         - saveFig (None|True|'fileName'): File name where to save the figure; 
             if set to True uses filename from simConfig (default: None)
         - showFig (True|False): Whether to show the figure or not (default: True)
-
         - Returns figure handles
     '''
     
@@ -2853,7 +2833,7 @@ def plotConn (includePre = ['all'], includePost = ['all'], feature = 'strength',
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {}
+    return fig
 
 
 ######################################################################################################################################################
@@ -2874,7 +2854,6 @@ def plot2Dnet (include = ['allCells'], figSize = (12,12), view = 'xy', showConns
             if set to True uses filename from simConfig (default: None)(default: None)
         - showFig (True|False): Whether to show the figure or not;
             if set to True uses filename from simConfig (default: None)
-
         - Returns figure handles
     '''
     import sim
@@ -2988,7 +2967,7 @@ def plot2Dnet (include = ['allCells'], figSize = (12,12), view = 'xy', showConns
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {}
+    return fig
 
 ######################################################################################################################################################
 ## Calculate number of disynaptic connections
@@ -3083,7 +3062,6 @@ def nTE(cells1 = [], cells2 = [], spks1 = None, spks2 = None, timeRange = None, 
         - timeRange ([min, max]): Range of time to calculate nTE in ms (default: [0,cfg.duration])
         - binSize (int): Bin size used to convert spike times into histogram 
         - numShuffle (int): Number of times to shuffle spike train 1 to calculate TEshuffled; note: nTE = (TE - TEShuffled)/H(X2F|X2P)
-
         - Returns nTE (float): normalized transfer entropy 
     '''
 
@@ -3201,7 +3179,6 @@ def granger(cells1 = [], cells2 = [], spks1 = None, spks2 = None, label1 = 'spkT
             if set to True uses filename from simConfig (default: None)(default: None)
         - showFig (True|False): Whether to show the figure or not;
             if set to True uses filename from simConfig (default: None)
-
         - Returns 
             F: list of freqs
             Fx2y: causality measure from x to y 
@@ -3312,7 +3289,7 @@ def granger(cells1 = [], cells2 = [], spks1 = None, spks2 = None, label1 = 'spkT
         # show fig 
         if showFig: _showFigure()
 
-    return fig, {'F': F, 'Fx2y': Fx2y[0], 'Fy2x': Fy2x[0], 'Fxy': Fxy[0]}
+    return F, Fx2y[0],Fy2x[0], Fxy[0], fig
 
 
 
@@ -3388,7 +3365,7 @@ def plotEPSPAmp(include=None, trace=None, start=0, interval=50, number=2, amp='a
     # show fig 
     if showFig: _showFigure()
 
-    return fig, {'peaks': peaks}
+    return peaks, fig
 
 ######################################################################################################################################################
 ## Plot RxD concentration
@@ -3414,4 +3391,4 @@ def plotRxDConcentration(speciesLabel, regionLabel, plane='xy', showFig=True):
     # show fig 
     if showFig: _showFigure()
     
-    return fig, {}
+    return fig
